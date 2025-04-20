@@ -1,10 +1,10 @@
 {
-  "name": "claude-php/claude-3-api",
+  "name": "claude-php/claude-3-api-php7.4",
   "version": "0.1.23",
-  "description": "A PHP package for the Claude 3.7 Sonnet API",
+  "description": "A PHP package for the Claude 3.7 Sonnet API for PHP 7.4",
   "type": "library",
   "require": {
-    "php": "^8.0",
+    "php": "^7.4",
     "guzzlehttp/guzzle": "^7.8",
     "ext-json": "*"
   },
