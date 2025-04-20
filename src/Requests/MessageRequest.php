@@ -73,7 +73,7 @@ class MessageRequest
         return $this;
     }
 
-    public function addTool(Tool|array $tool): self
+    public function addTool($tool): self
     {
         if (is_array($tool)) {
             $this->tools[] = $tool;

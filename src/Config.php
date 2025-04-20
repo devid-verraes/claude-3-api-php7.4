@@ -41,16 +41,34 @@ class Config
     const DEFAULT_MESSAGE_PATH = self::CLAUDE_MESSAGE_PATH;
     const DEFAULT_BETA_FEATURES = self::CLAUDE_BETA_FEATURES;
 
+    private $apiKey;
+    private $apiVersion;
+    private $baseUrl;
+    private $model;
+    private $maxTokens;
+    private $authType;
+    private $messagePath;
+    private $betaFeatures;
+
     public function __construct(
-        private string $apiKey,
-        private string $apiVersion = self::DEFAULT_API_VERSION,
-        private string $baseUrl = self::DEFAULT_BASE_URL,
-        private string $model = self::DEFAULT_MODEL,
-        private string $maxTokens = self::DEFAULT_MAX_TOKENS,
-        private string $authType = self::DEFAULT_AUTH_TYPE,
-        private string $messagePath = self::DEFAULT_MESSAGE_PATH,
-        private array $betaFeatures = self::DEFAULT_BETA_FEATURES
-    ) {}
+        string $apiKey,
+        string $apiVersion = self::DEFAULT_API_VERSION,
+        string $baseUrl = self::DEFAULT_BASE_URL,
+        string $model = self::DEFAULT_MODEL,
+        int $maxTokens = self::DEFAULT_MAX_TOKENS,
+        string $authType = self::DEFAULT_AUTH_TYPE,
+        string $messagePath = self::DEFAULT_MESSAGE_PATH,
+        array $betaFeatures = self::DEFAULT_BETA_FEATURES
+    ) {
+        $this->apiKey = $apiKey;
+        $this->apiVersion = $apiVersion;
+        $this->baseUrl = $baseUrl;
+        $this->model = $model;
+        $this->maxTokens = $maxTokens;
+        $this->authType = $authType;
+        $this->messagePath = $messagePath;
+        $this->betaFeatures = $betaFeatures;
+    }
 
     public function useClaude(): self
     {

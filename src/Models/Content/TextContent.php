@@ -11,7 +11,7 @@ class TextContent implements ContentInterface
      * Creates a new TextContent instance
      * 
      * @param string $text The text content
-     * @param CacheControl|null $cacheControl Optional cache control settings
+     * @param CacheControl|null $cacheControl Optional cache control
      */
     public function __construct(string $text, ?CacheControl $cacheControl = null)
     {

@@ -13,10 +13,13 @@ use Claude\Claude3Api\Responses\MessageResponse;
 
 class Client
 {
-    private HttpClient $httpClient;
+    private $httpClient;
+    private $config;
 
-    public function __construct(private Config $config)
+    public function __construct(Config $config)
     {
+        $this->config = $config;
+
         $headers = [
             'Content-Type' => 'application/json',
             'anthropic-version' => $this->config->getApiVersion(),
@@ -45,7 +48,7 @@ class Client
         ]);
     }
 
-    private function formatRequest(array|string $request): MessageRequest
+    private function formatRequest($request) : MessageRequest
     {
         $messageRequest = new MessageRequest($this->config);
         $messageRequest->setModel($this->config->getModel());
@@ -79,13 +82,13 @@ class Client
         return $messageRequest;
     }
 
-    public function chat(array|string $request): MessageResponse
+    public function chat($request): MessageResponse
     {
         $messageRequest = $this->formatRequest($request);
         return $this->sendMessage($messageRequest);
     }
 
-    public function sendMessage(MessageRequest|array $request): MessageResponse
+    public function sendMessage($request) : MessageResponse
     {
         try {
             $url = rtrim($this->config->getBaseUrl(), '/') . $this->config->getMessagePath();
@@ -163,7 +166,7 @@ class Client
         }
     }
 
-    public function sendMessageWithImage(string $imagePath, string $prompt): MessageResponse
+    public function sendMessageWithImage($imagePath, $prompt) : MessageResponse
     {
         $imageData = file_get_contents($imagePath);
         $base64Image = base64_encode($imageData);
